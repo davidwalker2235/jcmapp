@@ -8,6 +8,7 @@ node_modules/
 dist/
 web-build/
 google-services.json
+firebaseConfig.ts
 
 # Native
 .kotlin/
