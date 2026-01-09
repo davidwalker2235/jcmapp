@@ -1,15 +1,20 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, Pressable, StyleSheet } from 'react-native';
 
-import { Collapsible } from '@/components/ui/collapsible';
 import { ExternalLink } from '@/components/external-link';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { Collapsible } from '@/components/ui/collapsible';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
+import { logEvent } from '@/utils/analytics';
 
 export default function TabTwoScreen() {
+  const handleAnalyticsTest = () => {
+    void logEvent('boton_prueba');
+  };
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -94,6 +99,11 @@ export default function TabTwoScreen() {
           ),
         })}
       </Collapsible>
+    <Pressable style={styles.analyticsButton} onPress={handleAnalyticsTest}>
+      <ThemedText type="defaultSemiBold" style={styles.analyticsButtonText}>
+        Botón prueba
+      </ThemedText>
+    </Pressable>
     </ParallaxScrollView>
   );
 }
@@ -108,5 +118,18 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+  },
+  analyticsButton: {
+    marginTop: 16,
+    marginBottom: 32,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 999,
+    backgroundColor: '#007aff',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  analyticsButtonText: {
+    color: '#fff',
   },
 });
